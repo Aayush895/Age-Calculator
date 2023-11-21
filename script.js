@@ -37,9 +37,13 @@ function calcAge() {
         .querySelector('.day')
         .querySelector('p').innerText = `Must be a valid day`
     }
+    document
+      .querySelector('.day')
+      .querySelector('h6').classList.add('error')
     checkInput.day = false
   } else {
     document.querySelector('.day').querySelector('p').innerText = ``
+    document.querySelector('.day').querySelector('h6').classList.remove('error')
     checkInput.day = true
   }
   if (
@@ -58,9 +62,11 @@ function calcAge() {
         .querySelector('.month')
         .querySelector('p').innerText = `Must be a valid month`
     }
+    document.querySelector('.month').querySelector('h6').classList.add('error')
     checkInput.month = false
   } else {
     document.querySelector('.month').querySelector('p').innerText = ``
+    document.querySelector('.month').querySelector('h6').classList.remove('error')
     checkInput.month = true
   }
   if (
@@ -78,9 +84,11 @@ function calcAge() {
         .querySelector('.year')
         .querySelector('p').innerText = `Must be a valid year`
     }
+    document.querySelector('.year').querySelector('h6').classList.add('error')
     checkInput.year = false
   } else {
     document.querySelector('.year').querySelector('p').innerText = ``
+    document.querySelector('.year').querySelector('h6').classList.remove('error')
     checkInput.year = true
   }
 
@@ -89,8 +97,13 @@ function calcAge() {
     calcMonth = d.getUTCMonth() + 1 - Number(monthInput.value)
     calcYear = d.getUTCFullYear() - Number(yearInput.value)
 
-    calcAge = `${calcYear} - ${calcMonth} - ${calcDay}`
-    console.log(calcAge)
+    displayYears.innerText = `${calcYear}`
+    displayMonths.innerText = `${calcMonth}`
+    displayDays.innerText = `${calcDay}`
+  } else {
+    displayYears.innerText = `--`
+    displayMonths.innerText = `--`
+    displayDays.innerText = `--`
   }
 }
 
