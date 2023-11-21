@@ -23,6 +23,7 @@ function animateCounterDay(day) {
     displayDays.innerText = day
   }
 }
+
 function animateCounterMonth(month) {
   let count
   if (displayMonths.innerText == `--`) {
@@ -37,6 +38,7 @@ function animateCounterMonth(month) {
     displayMonths.innerText = month
   }
 }
+
 function animateCounterYear(year) {
   let count
   if (displayYears.innerText == `--`) {
