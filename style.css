@@ -40,18 +40,17 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
-.age-input-form h6 {
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5rem;
-  font-size: small;
-  color: var(--Smokey-grey);
+.day,
+.month,
+.year {
+  position: relative;
 }
 
 input {
+  position: relative;
   width: 40%;
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
@@ -69,9 +68,25 @@ input::placeholder {
   transform: translateY(-50%);
 }
 
+.age-input-form p {
+  font-size: x-small;
+  color: var(--Light-red);
+  font-style: italic;
+  position: absolute;
+  margin-top: 0.5rem; 
+}
+
+.age-input-form h6 {
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  font-size: small;
+  color: var(--Smokey-grey);
+}
+
 img {
   width: 5%;
-  top: 9.5rem;
+  top: 32%;
   right: 1rem;
   background-color: var(--Purple);
   border-radius: 50%;
@@ -97,6 +112,16 @@ img:hover {
   font-weight: 800;
 }
 
+.error {
+  color: var(--Light-red) !important;
+}
+
+@media (max-width: 834px) {
+  input {
+    width: 70%;
+  }
+}
+
 @media (max-width: 428px) {
   #age-calc-container {
     width: 100%;
@@ -119,10 +144,10 @@ img:hover {
     font-size: 1.5rem;
     font-weight: 700;
   }
-  
+
   img {
     right: 50%;
-    top: 11rem;
+    top: 32%;
     transform: translateX(50%);
   }
 
@@ -155,13 +180,7 @@ img:hover {
   }
 
   img {
-    top: 10rem;
-  }
-}
-
-@media (max-width: 834px) {
-  input {
-    width: 70%
+    top: 31%;
   }
 }
 
@@ -173,11 +192,11 @@ img:hover {
   }
 
   img {
-    top: 10.5rem;
+    top: 31.5%;
   }
 }
 
-@media(max-width: 360px) {
+@media (max-width: 360px) {
   #age-calc-container {
     padding: 1.5rem 0;
   }
