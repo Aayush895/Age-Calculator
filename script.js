@@ -9,24 +9,62 @@ const displayDays = document.querySelector('.calc-days')
 
 let d = new Date()
 
-function calcAge() {
-  const checkInput = {
+function animateCounterDay(day) {
+  let count
+  if (displayDays.innerText == `--`) {
+    count = 0
+  } else {
+    count = +displayDays.innerText
+  }
+  if (count < day) {
+    displayDays.innerText = count + 1
+    setTimeout(() => animateCounterDay(day), 50)
+  } else {
+    displayDays.innerText = day
+  }
+}
+function animateCounterMonth(month) {
+  let count
+  if (displayMonths.innerText == `--`) {
+    count = 0
+  } else {
+    count = +displayMonths.innerText
+  }
+  if (count < month) {
+    displayMonths.innerText = count + 1
+    setTimeout(() => animateCounterMonth(month), 50)
+  } else {
+    displayMonths.innerText = month
+  }
+}
+function animateCounterYear(year) {
+  let count
+  if (displayYears.innerText == `--`) {
+    count = 0
+  } else {
+    count = +displayYears.innerText
+  }
+  if (count < year) {
+    displayYears.innerText = count + 1
+    setTimeout(() => animateCounterYear(year), 50)
+  } else {
+    displayYears.innerText = year
+  }
+}
+
+function validateInput() {
+  let validInput = {
     day: true,
     month: true,
     year: true,
   }
-  let calcYear = 0
-  let calcMonth = 0
-  let calcDay = 0
 
   if (
     dayInput.value == '' ||
     dayInput.value.length != 2 ||
     dayInput.value <= '00' ||
     dayInput.value > '31' ||
-    Number(dayInput.value) > d.getUTCDate() ||
-    dayInput.value >
-      new Date(Number(yearInput.value), Number(monthInput.value), 0).getDate()
+    dayInput.value > new Date(+yearInput.value, +monthInput.value, 0).getDate()
   ) {
     if (dayInput.value == '') {
       document
@@ -37,21 +75,19 @@ function calcAge() {
         .querySelector('.day')
         .querySelector('p').innerText = `Must be a valid day`
     }
-    document
-      .querySelector('.day')
-      .querySelector('h6').classList.add('error')
-    checkInput.day = false
+    document.querySelector('.day').querySelector('h6').classList.add('error')
+    validInput.day = false
   } else {
     document.querySelector('.day').querySelector('p').innerText = ``
     document.querySelector('.day').querySelector('h6').classList.remove('error')
-    checkInput.day = true
+    validInput.day = true
   }
   if (
     monthInput.value == '' ||
     monthInput.value.length != 2 ||
     monthInput.value <= '00' ||
     monthInput.value > '12' ||
-    Number(monthInput.value) > d.getUTCMonth() + 1
+    +monthInput.value > d.getUTCMonth() + 1
   ) {
     if (monthInput.value == '') {
       document
@@ -63,16 +99,19 @@ function calcAge() {
         .querySelector('p').innerText = `Must be a valid month`
     }
     document.querySelector('.month').querySelector('h6').classList.add('error')
-    checkInput.month = false
+    validInput.month = false
   } else {
     document.querySelector('.month').querySelector('p').innerText = ``
-    document.querySelector('.month').querySelector('h6').classList.remove('error')
-    checkInput.month = true
+    document
+      .querySelector('.month')
+      .querySelector('h6')
+      .classList.remove('error')
+    validInput.month = true
   }
   if (
     yearInput.value == '' ||
     yearInput.value.length != 4 ||
-    Number(yearInput.value) > d.getUTCFullYear() ||
+    +yearInput.value > d.getUTCFullYear() ||
     yearInput.value < '1970'
   ) {
     if (yearInput.value == '') {
@@ -85,21 +124,39 @@ function calcAge() {
         .querySelector('p').innerText = `Must be a valid year`
     }
     document.querySelector('.year').querySelector('h6').classList.add('error')
-    checkInput.year = false
+    validInput.year = false
   } else {
     document.querySelector('.year').querySelector('p').innerText = ``
-    document.querySelector('.year').querySelector('h6').classList.remove('error')
-    checkInput.year = true
+    document
+      .querySelector('.year')
+      .querySelector('h6')
+      .classList.remove('error')
+    validInput.year = true
   }
 
+  return validInput
+}
+
+function calcAge() {
+  let checkInput = {}
+  let calcYear = 0
+  let calcMonth = 0
+  let calcDay = 0
+
+  checkInput = validateInput()
+
+  displayYears.innerText = `--`
+  displayMonths.innerText = `--`
+  displayDays.innerText = `--`
+
   if (checkInput.day && checkInput.month && checkInput.year) {
-    calcDay = d.getUTCDate() - Number(dayInput.value)
+    calcDay = Math.abs(d.getUTCDate() - Number(dayInput.value))
     calcMonth = d.getUTCMonth() + 1 - Number(monthInput.value)
     calcYear = d.getUTCFullYear() - Number(yearInput.value)
 
-    displayYears.innerText = `${calcYear}`
-    displayMonths.innerText = `${calcMonth}`
-    displayDays.innerText = `${calcDay}`
+    animateCounterDay(calcDay)
+    animateCounterMonth(calcMonth)
+    animateCounterYear(calcYear)
   } else {
     displayYears.innerText = `--`
     displayMonths.innerText = `--`
