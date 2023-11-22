@@ -44,8 +44,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/Aayush895/Age-Calculator)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Source Code](https://github.com/Aayush895/Age-Calculator)
+- Live Site URL: [Deployed Site](https://responsive-age-calculator.netlify.app/)
 
 ## My process
 
@@ -185,5 +185,4 @@ While building this project, I realised the importance of the Date() constructor
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
+I would like to thank the entire frontend-mentor team for providing such interesting challenges to test and improve my skills in the domain of frontend web development.
